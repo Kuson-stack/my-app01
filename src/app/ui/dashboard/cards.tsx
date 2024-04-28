@@ -5,7 +5,7 @@ import {
     CalendarIcon,    
   } from '@heroicons/react/24/outline';
   import { lusitana } from '@/app/ui/fonts';
-  import { getCountCompletedSheet } from '@/app/lib/actions';
+  import { CountCompletedToday, CountPendingToday, CountOrderToday, CountCompletedMonth } from '@/app/lib/actions';
   //import { useEffect, useState } from 'react';
   //import { fetchCardData } from '@/app/lib/data';
   
@@ -17,14 +17,27 @@ import {
   };
   
   export default async function CardWrapper() {    
-   /**  
-    const completedCount = await getCountCompletedSheet();**/
+    
+    const completedCount = await CountCompletedToday(); 
+    const pendingCount = await CountPendingToday();
+    const orderCount = await CountOrderToday();
+    const orderMonth = await CountCompletedMonth();
 
+ /**
+ /**
+  const {
+        completedCount,
+        pendingCount,
+        todayCount,
+        completedMonthCount,
+      } = await getCardSheetValues(); */
+
+/** 
     const completedCount = 100;    
     const pendingCount = 100;
     const todayCount = 100;
-    const completedMonthCount = 100;
-  
+    const completedMonthCount = 100; */ 
+
     return (
       <>
         <Card 
@@ -39,12 +52,12 @@ import {
         />
         <Card 
             title="Total Orders of day" 
-            value={todayCount} 
+            value={orderCount} 
             type="order_day" 
         />
         <Card
           title="Total Order of month"
-          value={completedMonthCount}
+          value={orderMonth}
           type="order_week"
         />
       </>
@@ -57,7 +70,7 @@ import {
     type,
   }: {
     title: string;
-    value: number | string;
+    value: number | never[];
     type: 'order_week' | 'order_day' | 'pending' | 'completed';
   }) {
     const Icon = iconMap[type];

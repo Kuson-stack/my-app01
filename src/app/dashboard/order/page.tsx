@@ -1,15 +1,20 @@
 
 "use client";
-import { getCountCompletedSheet } from "@/app/lib/actions";
+import { getCardSheetValues } from "@/app/lib/actions";
 import { Button } from "@/app/ui/ิีbutton";
 
 
-export default function Page() {
 
+export default function Page() {
+  
   const handleOnGetSheetDataClick = async () => {
-    const response = await getCountCompletedSheet();
+    const response = await getCardSheetValues();
     console.log(response)
   };
 
-  return <Button onClick={handleOnGetSheetDataClick}>Get Sheet Data</Button>;
+  return (
+    <>
+      <Button onClick={handleOnGetSheetDataClick}>Get Sheet Data</Button>;
+    </>
+  ) 
 }

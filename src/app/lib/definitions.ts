@@ -75,7 +75,7 @@ export type User = {
     total_paid: string;
   };
   
-  export type CustomerField = {
+  export type OrderField = {
     id: string;
     name: string;
   };
